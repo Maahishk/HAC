@@ -20,16 +20,18 @@ class University(models.Model):
     def __str__(self):
         return self.uniName
 class CollegeDetails(models.Model):
-    collegeId= models.IntegerField(primary_key=True)
+    collegeId= models.AutoField(primary_key=True)
     collegeImg = models.ImageField(upload_to="colleges")
     collegeName = models.CharField(max_length=200)
     collegeDescription = models.TextField(max_length=200, blank=True)
+    collegeAddress = models.CharField(max_length=200, blank=True)
+    collegecontact = models.CharField(max_length=200, blank=True)
     university = models.ForeignKey(University, null=True, blank=True,on_delete= models.SET_NULL)
     def __str__(self):
         return self.collegeName
 
 class CourseDetails(models.Model):
-    couId = models.IntegerField(primary_key=True)
+    couId = models.AutoField(primary_key=True)
     courseTitle = models.CharField(max_length=200)
     courseDescription = models.TextField(max_length=200, null=True, blank=True)
     duration = models.CharField(max_length=50, null=True)

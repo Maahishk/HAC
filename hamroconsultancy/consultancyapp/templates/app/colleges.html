@@ -3,7 +3,7 @@
   <div class="row">
     <div class="col-sm-8">
       <h5>Colleges in Nepal</h5>
-      <div class="d-flex" style="width: 34rem; margin-top: 20px">
+      <div class="d-flex" style="width: 100%; margin-top: 20px">
         {% for college in colleges %}
         <div
           class="card"
@@ -21,8 +21,10 @@
           />
           <div style="margin-left: 20px; margin-top: 20px">
             <h5 class="card-title">{{college.collegeName}}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">university</h6>
-            <p class="card-text">course duration</p>
+            <h6 class="card-subtitle mb-2 text-muted">
+              {{college.university}}
+            </h6>
+            <p class="card-text">{{college.collegeAddress}}</p>
           </div>
         </div>
         {% endfor %}
