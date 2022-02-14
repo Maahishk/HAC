@@ -1,0 +1,46 @@
+{% extends 'app/main.html' %} {% load static %} {% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-8">
+      <h5>Colleges in Nepal</h5>
+      <div class="d-flex" style="width: 34rem; margin-top: 20px">
+        {% for college in colleges %}
+        <div
+          class="card"
+          style="
+            margin-right: 20px;
+            width: 100%;
+            box-shadow: 0px 0px 10px 0px rgb(204, 204, 204);
+          "
+        >
+          <img
+            class="card-img-top"
+            src="{{college.collegeImg.url}}"
+            alt="Card image cap"
+            style="width: 100%; height: 50%"
+          />
+          <div style="margin-left: 20px; margin-top: 20px">
+            <h5 class="card-title">{{college.collegeName}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">university</h6>
+            <p class="card-text">course duration</p>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="border-left col-sm-4">
+      <h5>Search</h5>
+      <div>
+        <h6>Course</h6>
+        <input type="radio" aria-label="Masters" />Masters
+        <input type="radio" aria-label="Masters" />Bachelors
+        <input type="radio" aria-label="Masters" />PreDiploma
+      </div>
+      <div>
+        <h6>Place</h6>
+        <input type="radio" aria-label="Masters" />university
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

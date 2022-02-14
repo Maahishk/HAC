@@ -1,0 +1,32 @@
+{% extends 'app/main.html' %} {% load static %} {% block content %}
+
+<div>
+  <h5>Universities</h5>
+  <div class="d-flex flex-wrap">
+    {% for uni in universities %}
+    <div
+      class="card"
+      style="
+        width: 18rem;
+        box-shadow: 0px 0px 10px 0px rgb(204, 204, 204);
+        margin-right: 20px;
+        padding: 10px;
+      "
+    >
+      <img
+        class="card-img-top"
+        src="{{uni.logo.url}}"
+        alt="Card image cap"
+        style="width: 100px; height: 100px; margin-left: 80px"
+      />
+      <div style="margin-left: 20px; margin-top: 20px">
+        <h5 class="card-title">{{uni.uniName}}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{uni.uniaddress}}</h6>
+        <p class="card-text">{{uni.uniContact}}</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% endblock %}

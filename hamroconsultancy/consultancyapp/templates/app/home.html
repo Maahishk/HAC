@@ -1,0 +1,83 @@
+{% extends 'app/main.html' %} {% load static %} {% block content %}
+<div>
+  <!--top colleges-->
+  <h5>Top Colleges</h5>
+  {% for uni in university%}
+  <div class="d-flex justify-content-start flex-wrap">
+    <div class="card" style="width: 18rem; margin-right: 30px">
+      <div class="d-flex" style="margin-top: 10px; margin-left: 20px">
+        <img
+          class="card-img-top"
+          src="{{uni.logo.url}}"
+          alt="Card image cap"
+          style="width: 50px"
+        />
+
+        <h5 class="card-title" style="padding-left: 10px">{{uni.uniName}}</h5>
+      </div>
+      <hr />
+      <div style="margin-left: 20px">
+        <h6 class="card-subtitle mb-2 text-muted">List of courses</h6>
+        <p class="card-text">List of courses</p>
+      </div>
+    </div>
+    {% endfor %}
+    <!--second card-->
+    {% for college in colleges %}
+    <div class="card" style="width: 18rem; margin-right: 30px">
+      <div class="d-flex" style="margin-top: 10px; margin-left: 20px">
+        <img
+          class="card-img-top"
+          src="{{college.collegeImg.url}}"
+          alt="Card image cap"
+          style="width: 50px"
+        />
+        <h5 class="card-title" style="padding-left: 10px">
+          {{college.collegeName}}
+        </h5>
+      </div>
+      <hr />
+      <div style="margin-left: 20px">
+        <h6 class="card-subtitle mb-2 text-muted">List of courses</h6>
+        <p class="card-text">List of courses</p>
+      </div>
+    </div>
+    {%endfor%}
+  </div>
+  <!--Fields of study-->
+  <div style="margin-top: 20px">
+    <h5 style="margin-top: 20px; margin-bottom: 20px">Fields of study</h5>
+    <div class="d-flex flex-wrap justify-content-start">
+      {% for field in fields %}
+      <div
+        class="card"
+        style="
+          width: 14rem;
+          height: 14rem;
+          align-items: center;
+          text-align: center;
+          box-shadow: 0px 0px 10px 0px rgb(204, 204, 204);
+          margin-right: 20px;
+          margin-top: 20px;
+          cursor: pointer;
+        "
+      >
+        {% if field.simg.url is not none %}
+        <img
+          class="card-img-top"
+          src="{{field.simg.url}}"
+          alt="Card image cap"
+          style="width: 100px; height: 100px; margin-top: 10px"
+        />
+        {% else %}
+        <img class="card-img-top" src="..." alt="Card image cap" />
+        {% endif %}
+        <div class="card-body">
+          <p class="card-title">{{field.fieldName}}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock %}
