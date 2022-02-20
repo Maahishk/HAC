@@ -14,15 +14,30 @@
 {% include 'app/navbar.html' %}
 <hr />
 
-<div style="margin-left: 5%">
-  <form class="form-inline my-2 my-lg-0 mb-20">
-    <input
-      class="form-control mr-sm-2"
-      type="search"
-      placeholder="Search"
-      aria-label="Search"
-    />
-  </form>
+<div style="margin-left: 5%; margin-right: 5%">
+  <div class="d-flex justify-content-between">
+    <form class="form-inline my-2 my-lg-0 mb-20 w-50%">
+      <input
+        class="form-control mr-sm-2"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+        width="100%"
+      />
+      <span><i class="fa fa-search"></i></span>
+    </form>
+    <p
+      style="
+        font-size: 12px;
+        font-style: italic;
+        font-weight: bold;
+        color: green;
+      "
+    >
+      Confused about which course is best for you?
+      <a href="{% url 'quiz' %}">Click here</a>
+    </p>
+  </div>
   <div style="margin-top: 20px; margin-bottom: 20px">
     {% block content %} {% endblock %}
   </div>

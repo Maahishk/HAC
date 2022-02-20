@@ -42,5 +42,15 @@ class CourseDetails(models.Model):
 class CollegeCourse(models.Model):
     collegeId = models.ForeignKey(CollegeDetails(), null=True, blank=True, on_delete= models.SET_NULL)
     couId = models.ForeignKey(CourseDetails(), null=True, blank=True, on_delete= models.SET_NULL)
+
     def __str__(self):
         return self.couId+""+collegeId
+
+class QuestionModel(models.Model):
+    question = models.CharField(max_length=200, null=True)
+    op1 = models.CharField(max_length=200,null=True)
+    op2 = models.CharField(max_length=200,null=True)
+    op3 = models.CharField(max_length=200,null=True)
+    op4 = models.CharField(max_length=200,null=True)
+    def __str__(self):
+        return self.question
