@@ -4,7 +4,7 @@ from django.db import models
 class  StudyField(models.Model):
     fieldName=models.CharField(max_length=100, null=True)
     simg=models.ImageField(
-        upload_to="field_image2",
+        upload_to="field_image",
         null=True, 
         blank=True)
     def __str__(self):
