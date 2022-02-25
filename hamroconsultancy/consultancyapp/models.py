@@ -22,10 +22,13 @@ class University(models.Model):
 class CollegeDetails(models.Model):
     collegeId= models.AutoField(primary_key=True)
     collegeImg = models.ImageField(upload_to="colleges")
+    collegeLogo=models.ImageField(upload_to="colleges", null=True, default="statics/images/album-default.png")
     collegeName = models.CharField(max_length=200)
-    collegeDescription = models.TextField(max_length=200, blank=True)
+    collegeDescription = models.TextField(max_length=10000000, blank=True)
     collegeAddress = models.CharField(max_length=200, blank=True)
     collegecontact = models.CharField(max_length=200, blank=True)
+    collegerating = models.IntegerField(max_length=200, blank=True, default=0)
+    website = models.CharField(max_length=200, blank=True, default="")
     university = models.ForeignKey(University, null=True, blank=True,on_delete= models.SET_NULL)
     def __str__(self):
         return self.collegeName

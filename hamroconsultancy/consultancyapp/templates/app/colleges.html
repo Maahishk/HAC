@@ -1,17 +1,23 @@
 {% extends 'app/main.html' %} {% load static %} {% block content %}
 <div class="container-fluid">
-  <div class="d-flex flex-nowrap justify-content-start">
+  <div class="d-flex flex-nowrap justify-content-between">
     <div class="w-60%">
       <h5>Colleges in Nepal</h5>
-      <div class="d-flex" style="width: 100%; margin-top: 20px">
+      <div
+        class="d-flex justify-content-start flex-wrap"
+        style="width: 100%; margin-top: 20px"
+      >
         {% for college in colleges %}
-        <div
+        <a
+          href="{{}}"
           class="card"
           style="
             margin-right: 20px;
-            width: 100%;
+            margin-bottom: 20px;
+            width: 23%;
             box-shadow: 0px 0px 10px 0px rgb(204, 204, 204);
             cursor: pointer;
+            height: 250px;
           "
         >
           <img
@@ -27,7 +33,7 @@
             </h6>
             <p class="card-text">{{college.collegeAddress}}</p>
           </div>
-        </div>
+        </a>
         {% endfor %}
       </div>
     </div>
