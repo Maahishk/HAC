@@ -2,24 +2,38 @@
 <div>
   <!--top colleges-->
   <h5>Top Colleges</h5>
-  <div class="d-flex flex-wrap">
+  <div class="d-flex flex-nowrap overflow-x:scroll" style="height: 200px">
     {% for college in colleges %}
     <div class="card" style="width: 18rem; margin-right: 30px">
-      <div class="d-flex" style="margin-top: 10px; margin-left: 20px">
+      <div
+        class="d-flex"
+        style="margin-top: 10px; margin-left: 5px; height: 60px"
+      >
         <img
           class="card-img-top"
-          src="{{college.collegeImg.url}}"
+          src="{{college.collegeLogo.url}}"
           alt="Card image cap"
-          style="width: 50px"
+          style="width: 50%"
         />
-        <h5 class="card-title" style="padding-left: 10px">
+        <p
+          class="card-title"
+          style="padding-left: 10px; font-size: 17px; font-weight: bold"
+        >
           {{college.collegeName}}
-        </h5>
+        </p>
       </div>
       <hr />
-      <div style="margin-left: 20px">
+      <div
+        class="card-text"
+        style="margin-left: 20px; overflow-y: scroll; cursor: pointer"
+      >
         <h6 class="card-subtitle mb-2 text-muted">List of courses</h6>
-        <p class="card-text">List of courses</p>
+        <ul>
+          <li>dvdjjsdkj</li>
+          <li>dvdjjsdkj</li>
+          <li>dvdjjsdkj</li>
+          <li>dvdjjsdkj</li>
+        </ul>
       </div>
     </div>
     {%endfor%}
