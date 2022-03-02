@@ -20,7 +20,12 @@
           "
         >
           <div style="margin-left: 20px; margin-top: 20px">
-            <h5 class="card-title">{{course.courseTitle}}</h5>
+            <a
+              href="{% url 'courseDetail' %}"
+              style="font-size: 18px; font-weight: bold"
+              class="card-title"
+              >{{course.courseTitle}}</a
+            >
             <h6 class="card-subtitle mb-2 text-muted">{{course.university}}</h6>
             <p class="card-text">{{course.duration}}</p>
           </div>

@@ -21,6 +21,16 @@ def colleges(request):
     context = {'colleges':colleges}
     return render(request, 'app/colleges.html', context)
 
+def courseDetail(request):
+    courses=CourseDetails.objects.all()
+    context={'courses':courses}
+    return render(request, 'app/courseDetail.html', context)
+
+def collegeDetail(request):
+    colleges=CollegeDetails.objects.all()
+    context = {'colleges':colleges}
+    return render(request, 'app/collegeDetail.html', context)
+
 def university(request):
     universities = University.objects.all()
     context = {'universities':universities}

@@ -27,7 +27,7 @@ class CollegeDetails(models.Model):
     collegeDescription = models.TextField(max_length=10000000, blank=True)
     collegeAddress = models.CharField(max_length=200, blank=True)
     collegecontact = models.CharField(max_length=200, blank=True)
-    collegerating = models.IntegerField(max_length=200, blank=True, default=0)
+    collegerating = models.IntegerField(blank=True, default=0)
     website = models.CharField(max_length=200, blank=True, default="")
     university = models.ForeignKey(University, null=True, blank=True,on_delete= models.SET_NULL)
     def __str__(self):
