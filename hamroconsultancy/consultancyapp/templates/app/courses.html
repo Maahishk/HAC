@@ -15,18 +15,18 @@
             margin-bottom: 20px;
             box-shadow: 0px 0px 10px 0px rgb(204, 204, 204);
             cursor: pointer;
-            width: 23%;
+            width: 260px;
             height: 150px;
           "
         >
           <div style="margin-left: 20px; margin-top: 20px">
             <a
               href="{% url 'courseDetail' %}"
-              style="font-size: 18px; font-weight: bold"
+              style="font-size: 18px; font-weight: bold; color: black;"
               class="card-title"
               >{{course.courseTitle}}</a
             >
-            <h6 class="card-subtitle mb-2 text-muted">{{course.university}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted mt-2">{{course.university}}</h6>
             <p class="card-text">{{course.duration}}</p>
           </div>
         </div>

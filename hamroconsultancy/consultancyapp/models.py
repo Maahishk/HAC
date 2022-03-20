@@ -20,7 +20,7 @@ class University(models.Model):
     def __str__(self):
         return self.uniName
 class CollegeDetails(models.Model):
-    collegeId= models.AutoField(primary_key=True)
+    collegeId= models.IntegerField(primary_key=True)
     collegeImg = models.ImageField(upload_to="colleges")
     collegeLogo=models.ImageField(upload_to="colleges", null=True, default="statics/images/album-default.png")
     collegeName = models.CharField(max_length=200)
@@ -34,7 +34,7 @@ class CollegeDetails(models.Model):
         return self.collegeName
 
 class CourseDetails(models.Model):
-    couId = models.AutoField(primary_key=True)
+    couId = models.IntegerField(primary_key=True)
     courseTitle = models.CharField(max_length=200)
     courseDescription = models.TextField(max_length=200, null=True, blank=True)
     duration = models.CharField(max_length=50, null=True)
