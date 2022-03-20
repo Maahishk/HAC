@@ -29,7 +29,7 @@ def about(request):
     return render(request, 'app/about.html')
 
 def news(request):
-    return render(request, 'app/news.html', context)
+    return render(request, 'app/news.html')
     
 def courseDetail(request):
     courses=CourseDetails.objects.all()
