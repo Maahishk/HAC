@@ -49,6 +49,14 @@ class CollegeCourse(models.Model):
     def __str__(self):
         return self.couId+""+collegeId
 
+class Admission(models.Model):
+    admisId = models.IntegerField(primary_key=True)
+    admissionTitle= models.CharField(max_length=1000)
+    admissionFrom = models.CharField(max_length=200)
+    admissionTill = models.CharField(max_length=200)
+    def __str__(self):
+        return self.admissionFrom
+
 class QuestionModel(models.Model):
     question = models.CharField(max_length=200, null=True)
     op1 = models.CharField(max_length=200,null=True)

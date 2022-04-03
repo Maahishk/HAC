@@ -28,7 +28,7 @@
           <div style="margin-left: 10px; margin-top: 20px">
             <a
               href="{% url 'collegeDetail' %}"
-              style="font-weight: bold; font-size: 18px; color: black;"
+              style="font-weight: bold; font-size: 18px; color: black"
               class="card-title"
               >{{college.collegeName}}</a
             >
@@ -41,17 +41,30 @@
         {% endfor %}
       </div>
     </div>
-    <div class="border-left w-40%">
+    <div
+      class="d-flex flex-column border-left w-40%"
+      style="padding-left: 20px"
+    >
       <h5>Search</h5>
-      <div>
+      <div class="border-bottom">
         <h6>Course</h6>
-        <input type="radio" aria-label="Masters" />Masters
-        <input type="radio" aria-label="Masters" />Bachelors
-        <input type="radio" aria-label="Masters" />PreDiploma
+        <div class="flex-row">
+          <input type="radio" aria-label="Masters" />
+          <label>Masters</label>
+          <input type="radio" aria-label="Bachelors" />
+          <label>Bachelors</label>
+          <input type="radio" aria-label="PreDiploma" />
+          <label>PreDiploma</label>
+        </div>
       </div>
       <div>
-        <h6>Place</h6>
-        <input type="radio" aria-label="Masters" />university
+        <h6>Affillation</h6>
+        {% for i in uni %}
+        <div class="flex-row">
+          <input type="radio" aria-label="Masters" />
+          <label>{{i.uniName}}</label>
+        </div>
+        {%endfor%}
       </div>
     </div>
   </div>

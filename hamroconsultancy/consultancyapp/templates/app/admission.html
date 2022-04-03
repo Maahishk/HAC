@@ -1,1 +1,27 @@
-{% extends 'app/main.html' %} {% load static %} {% block content %}{% endblock %}
+{% extends 'app/main.html' %} {% load static %} {% block content %}
+<div class="container-fluid">
+  <h4>Admissions</h4>
+  {% for i in admi %}
+  <div
+    class="card"
+    style="
+      margin-right: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0px 0px 10px 0px rgb(204, 204, 204);
+      cursor: pointer;
+      width: 100%;
+      height: 100px;
+      padding: 10px;
+    "
+  >
+    <h5>{{i.admissionTitle}}</h5>
+    <div class="d-flex width-100%">
+      <label style="opacity: 0.6;">From: </label>
+      <p style="padding-right: 5px; padding-left: 5px">{{i.admissionFrom}}</p>
+      <label style="opacity: 0.6;"""> Until: </label>
+      <p style="padding-right: 5px; padding-left: 5px">{{i.admissionTill}}</p>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

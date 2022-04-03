@@ -22,29 +22,37 @@
           <div style="margin-left: 20px; margin-top: 20px">
             <a
               href="{% url 'courseDetail' %}"
-              style="font-size: 18px; font-weight: bold; color: black;"
+              style="font-size: 18px; font-weight: bold; color: black"
               class="card-title"
               >{{course.courseTitle}}</a
             >
-            <h6 class="card-subtitle mb-2 text-muted mt-2">{{course.university}}</h6>
+            <h6 class="card-subtitle mb-2 text-muted mt-2">
+              {{course.university}}
+            </h6>
             <p class="card-text">{{course.duration}}</p>
           </div>
         </div>
         {% endfor %}
       </div>
     </div>
-    <div class="w-40% border-left">
+    <div
+      class="d-flex flex-column w-40% border-left"
+      style="padding-left: 20pxe3w"
+    >
       <h5>Search</h5>
+      <h6>Level</h6>
       <div>
-        <h6>Level</h6>
         <input type="radio" aria-label="Masters" />Masters
         <input type="radio" aria-label="Masters" />Bachelors
         <input type="radio" aria-label="Masters" />PreDiploma
       </div>
-      <div>
-        <h6>Affillation</h6>
-        <input type="radio" aria-label="Masters" />university
+      <h6>Affillation</h6>
+      {% for i in uni %}
+      <div class="flex-row">
+        <input type="radio" aria-label="{{i.uniName}}" />
+        <label>{{i.uniName}}</label>
       </div>
+      {% endfor %}
     </div>
   </div>
 </div>

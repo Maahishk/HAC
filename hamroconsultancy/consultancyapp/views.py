@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import StudyField, University, CollegeDetails, CourseDetails, QuestionModel
+from .models import StudyField, University, CollegeDetails, CourseDetails, QuestionModel, Admission
 from .forms import CreateUserForm
 
 # Create your views here.
@@ -13,17 +13,20 @@ def dashboard(request):
 
 def courses(request):
     courses=CourseDetails.objects.all()
-    context={'courses':courses}
+    uni =University.objects.all()
+    context={'courses':courses, 'uni':uni}
     return render(request, 'app/courses.html', context)
 
 def colleges(request):
     colleges=CollegeDetails.objects.all()
-    context = {'colleges':colleges}
+    uni =University.objects.all()
+    context = {'colleges':colleges,'uni':uni}
     return render(request, 'app/colleges.html', context)
 
 def admission(request):
-    
-    return render(request, 'app/admission.html')
+    admi = Admission.objects.all()
+    context = {'admi':admi}
+    return render(request, 'app/admission.html', context)
 
 def about(request):
     return render(request, 'app/about.html')
@@ -38,6 +41,7 @@ def courseDetail(request):
 
 def collegeDetail(request):
     colleges=CollegeDetails.objects.all()
+    
     context = {'colleges':colleges}
     return render(request, 'app/collegeDetail.html', context)
 
