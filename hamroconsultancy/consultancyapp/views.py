@@ -113,7 +113,7 @@ def quiz(request):
     if request.method == 'POST':
         print(request.POST)
         questions=QuestionModel.objects.all()
-        score=0
+        ans=""
         wrong=0
         correct=0
         total=0
@@ -123,8 +123,14 @@ def quiz(request):
             print(q)
         
             if q.op1 ==  request.POST.get(q.question):
-                score+=10
+                ans="BBA/BBM/BBS"
                 correct+=1
+            else if q.op2 == request.POST.get(q.question):
+                ans="Engineering field"
+            else if q.op3 == request.POST.get(q.question):
+                ans="Arts and Humanity"
+            else if q.op4 == request.POST.get(q.question):
+                ans="Medical Studies"
             else:
                 wrong+=1
         percent = score/(total*10) *100
@@ -135,6 +141,7 @@ def quiz(request):
             'wrong':wrong,
             'percent':percent,
             'total':total
+            'ans':ans
         }
         return render(request,'app/quizresult.html',context)
     else:
