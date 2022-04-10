@@ -94,17 +94,17 @@ def register(request):
     context = {'form': form}
     return render(request, 'app/register.html', context)
     
-def login(request):
+def loginPage(request):
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
 
         user = authenticate(request, username=username, password=password)
         if user is not None:
-            login(request, username)
+            login(request, user)
             redirect('home')
         else:
-            messages.info("Username or Password incorrect")
+            messages.info(request, "Username or Password incorrect")
 
     context = {}
     return render(request, 'app/login.html', context)
