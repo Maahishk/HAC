@@ -123,23 +123,21 @@ def quiz(request):
             print(q)
         
             if q.op1 ==  request.POST.get(q.question):
-                ans="BBA/BBM/BBS"
+                ans="BBA/BBM/BBS/BIT"
                 correct+=1
             elif q.op2 == request.POST.get(q.question):
-                ans="Engineering field"
+                ans="Engineering field/CsIT/BIT "
             elif q.op3 == request.POST.get(q.question):
-                ans="Arts and Humanity"
+                ans="Arts and Humanity/ BHM"
             elif q.op4 == request.POST.get(q.question):
                 ans="Medical Studies"
             else:
                 wrong+=1
-        percent = score/(total*10) *100
+        
         context = {
-            'score':score,
             'time': request.POST.get('timer'),
             'correct':correct,
             'wrong':wrong,
-            'percent':percent,
             'total':total
         }
         return render(request,'app/quizresult.html',context)
