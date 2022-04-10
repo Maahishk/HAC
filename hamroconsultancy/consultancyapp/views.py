@@ -1,8 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import StudyField, University, CollegeDetails, CourseDetails, QuestionModel, Admission
 from .forms import CreateUserForm
 from .filters import CollegeFilter, CourseFilter, UniFilter
 from django.core.paginator import Paginator
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def dashboard(request):
@@ -10,8 +13,9 @@ def dashboard(request):
     university = University.objects.all()
     colleges=CollegeDetails.objects.all()[:5]
     courses=CourseDetails.objects.all()
-
-    context = {'fields':fields, 'university':university, 'colleges':colleges,'courses':courses}
+    myFilter=CourseFilter(request.GET, queryset=courses)
+    courses=myFilter.qs
+    context = {'fields':fields, 'university':university, 'colleges':colleges,'courses':courses,'myFilter':myFilter}
     return render(request, 'app/home.html', context)
 
 def courses(request):
@@ -53,6 +57,7 @@ def admission(request):
 def about(request):
     return render(request, 'app/about.html')
 
+@login_required(login_url='login')
 def news(request):
     return render(request, 'app/news.html')
     
@@ -69,7 +74,9 @@ def collegeDetail(request):
 
 def university(request):
     universities = University.objects.all()
-    context = {'universities':universities}
+    myFilter=UniFilter(request.GET, queryset=universities)
+    universities=myFilter.qs
+    context = {'universities':universities, 'myFilter':myFilter}
 
     return render(request, 'app/universities.html', context)
 
@@ -93,6 +100,12 @@ def login(request):
         password = request.POST.get('password')
 
         user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, username)
+            redirect('home')
+        else:
+            messages.info("Username or Password incorrect")
+
     context = {}
     return render(request, 'app/login.html', context)
 
@@ -107,9 +120,9 @@ def quiz(request):
         for q in questions:
             total+=1
             print(request.POST.get(q.question))
-            print(q.ans)
-            print()
-            if q.ans ==  request.POST.get(q.question):
+            print(q)
+        
+            if q.op1 ==  request.POST.get(q.question):
                 score+=10
                 correct+=1
             else:
@@ -123,7 +136,7 @@ def quiz(request):
             'percent':percent,
             'total':total
         }
-        return render(request,'app/result.html',context)
+        return render(request,'app/quizresult.html',context)
     else:
         questions=QuestionModel.objects.all()
         context = {

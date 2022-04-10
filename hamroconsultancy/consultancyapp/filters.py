@@ -14,5 +14,5 @@ class CourseFilter(django_filters.FilterSet):
 
 class UniFilter(django_filters.FilterSet):
     class Meta:
-        model = CollegeDetails
-        fields=['university']       
+        model = University
+        fields=['uniName']       
