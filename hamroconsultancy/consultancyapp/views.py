@@ -138,7 +138,8 @@ def quiz(request):
             'time': request.POST.get('timer'),
             'correct':correct,
             'wrong':wrong,
-            'total':total
+            'total':total,
+            'ans':ans
         }
         return render(request,'app/quizresult.html',context)
     else:
