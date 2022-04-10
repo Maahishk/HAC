@@ -125,11 +125,11 @@ def quiz(request):
             if q.op1 ==  request.POST.get(q.question):
                 ans="BBA/BBM/BBS"
                 correct+=1
-            else if q.op2 == request.POST.get(q.question):
+            elif q.op2 == request.POST.get(q.question):
                 ans="Engineering field"
-            else if q.op3 == request.POST.get(q.question):
+            elif q.op3 == request.POST.get(q.question):
                 ans="Arts and Humanity"
-            else if q.op4 == request.POST.get(q.question):
+            elif q.op4 == request.POST.get(q.question):
                 ans="Medical Studies"
             else:
                 wrong+=1
@@ -141,7 +141,6 @@ def quiz(request):
             'wrong':wrong,
             'percent':percent,
             'total':total
-            'ans':ans
         }
         return render(request,'app/quizresult.html',context)
     else:
