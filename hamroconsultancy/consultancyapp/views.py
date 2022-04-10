@@ -1,26 +1,48 @@
 from django.shortcuts import render
 from .models import StudyField, University, CollegeDetails, CourseDetails, QuestionModel, Admission
 from .forms import CreateUserForm
+from .filters import CollegeFilter, CourseFilter, UniFilter
+from django.core.paginator import Paginator
 
 # Create your views here.
 def dashboard(request):
     fields = StudyField.objects.all()
     university = University.objects.all()
-    colleges=CollegeDetails.objects.all()
+    colleges=CollegeDetails.objects.all()[:5]
     courses=CourseDetails.objects.all()
+
     context = {'fields':fields, 'university':university, 'colleges':colleges,'courses':courses}
     return render(request, 'app/home.html', context)
 
 def courses(request):
     courses=CourseDetails.objects.all()
     uni =University.objects.all()
-    context={'courses':courses, 'uni':uni}
+    
+    paginator = Paginator(courses, 5) # Show 5 contacts per page.
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    myFilter=CourseFilter(request.GET, queryset=courses)
+    courses=myFilter.qs
+    context={'courses':page_obj, 'uni':uni,'myFilter':myFilter}
     return render(request, 'app/courses.html', context)
 
 def colleges(request):
     colleges=CollegeDetails.objects.all()
     uni =University.objects.all()
-    context = {'colleges':colleges,'uni':uni}
+    myFilter=CollegeFilter(request.GET, queryset=colleges)
+    # uniFilter =UniFilter(request.GET, queryset=colleges)
+    
+    colleges=myFilter.qs
+    # colleges=uniFilter.qs
+
+    paginator = Paginator(colleges, 5) # Show 5 contacts per page.
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
+    context = {'colleges':page_obj,'uni':uni,'myFilter':myFilter}
     return render(request, 'app/colleges.html', context)
 
 def admission(request):

@@ -1,4 +1,4 @@
-{% load static %}
+{% load static %} {% load myapp_url %}
 <link
   rel="stylesheet"
   href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
@@ -13,18 +13,17 @@
 />
 {% include 'app/navbar.html' %}
 <hr />
-
 <div style="margin-left: 5%; margin-right: 5%">
   <div class="d-flex justify-content-between">
-    <form class="form-inline my-2 my-lg-0 mb-20 w-50%">
-      <input
-        class="form-control mr-sm-2"
-        type="search"
-        placeholder="Search"
-        aria-label="Search"
-        width="100%"
-      />
-      <span><i class="fa fa-search"></i></span>
+    <form
+      class="form-inline my-2 my-lg-0"
+      style="padding-left: 350px"
+      method="get"
+    >
+      {{myFilter.form}}
+      <button class="btn btn-none" type="submit">
+        <i class="fa fa-search"></i>
+      </button>
     </form>
     <p
       style="
