@@ -14,4 +14,5 @@ urlpatterns = [
     path('admission/', views.admission, name="admission"),
     path('about/', views.about, name="about"),
     path('news/', views.news, name="news"),
+    path('logout/', views.logoutuser, name="logout"),
 ]

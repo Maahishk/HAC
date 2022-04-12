@@ -5,12 +5,12 @@ from .models import *
 class CollegeFilter(django_filters.FilterSet):
     class Meta:
         model = CollegeDetails
-        fields=['collegeName']
+        fields=['university']
 
 class CourseFilter(django_filters.FilterSet):
     class Meta:
         model = CourseDetails
-        fields=['courseTitle']
+        fields=['university']
 
 class UniFilter(django_filters.FilterSet):
     class Meta:

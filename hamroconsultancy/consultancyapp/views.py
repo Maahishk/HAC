@@ -7,28 +7,57 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
+def search(request):
+
+    search = request.POST.get("search")
+    college = CollegeDetails.objects.filter(collegeName__contains=search)
+    course = CourseDetails.objects.filter(courseTitle__contains=search)
+        
+    if(college):
+        paginator = Paginator(college, 10) # Show 5 contacts per page.
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'app/colleges.html', {'search': search, 'college':page_obj})
+    if(course):
+        paginator = Paginator(course, 10) # Show 5 contacts per page.
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+        return render(request, 'app/courses.html', {'search': search, 'course':course})
+
+
+def collegeSearch(request):
+    search = request.GET.get("search")
+    college = CollegeDetails.objects.filter(collegeName__contains=search)
+    return render(request, 'app/collegeDetail.html', {'search': search, 'college':college})
+
 # Create your views here.
 def dashboard(request):
     fields = StudyField.objects.all()
     university = University.objects.all()
     colleges=CollegeDetails.objects.all()[:5]
     courses=CourseDetails.objects.all()
-    myFilter=CourseFilter(request.GET, queryset=courses)
-    courses=myFilter.qs
-    context = {'fields':fields, 'university':university, 'colleges':colleges,'courses':courses,'myFilter':myFilter}
+    paginator = Paginator(courses, 10) # Show 5 contacts per page.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    if request.method == "POST":
+        return search(request)
+        
+    context = {'fields':fields, 'university':university, 'colleges':colleges,'courses':courses}
     return render(request, 'app/home.html', context)
 
 def courses(request):
     courses=CourseDetails.objects.all()
     uni =University.objects.all()
-    
-    paginator = Paginator(courses, 5) # Show 5 contacts per page.
-
+    myFilter=CourseFilter(request.GET, queryset=courses)
+    courses=myFilter.qs
+    paginator = Paginator(courses, 10) # Show 5 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    myFilter=CourseFilter(request.GET, queryset=courses)
-    courses=myFilter.qs
+    
+    if request.method == "POST":
+        return search(request)
+        
     context={'courses':page_obj, 'uni':uni,'myFilter':myFilter}
     return render(request, 'app/courses.html', context)
 
@@ -37,12 +66,12 @@ def colleges(request):
     uni =University.objects.all()
     myFilter=CollegeFilter(request.GET, queryset=colleges)
     # uniFilter =UniFilter(request.GET, queryset=colleges)
-    
     colleges=myFilter.qs
     # colleges=uniFilter.qs
+    if request.method == "POST":
+        return search(request)
 
-    paginator = Paginator(colleges, 5) # Show 5 contacts per page.
-
+    paginator = Paginator(colleges, 10) # Show 5 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -51,10 +80,14 @@ def colleges(request):
 
 def admission(request):
     admi = Admission.objects.all()
+    if request.method == "POST":
+        return search(request)
     context = {'admi':admi}
     return render(request, 'app/admission.html', context)
 
 def about(request):
+    if request.method == "POST":
+        return search(request)
     return render(request, 'app/about.html')
 
 @login_required(login_url='login')
@@ -108,6 +141,10 @@ def loginPage(request):
 
     context = {}
     return render(request, 'app/login.html', context)
+
+def logoutuser(request):
+    logout(request)
+    return redirect('login')
 
 def quiz(request):
     if request.method == 'POST':

@@ -1,5 +1,4 @@
-{% extends 'app/main.html' %} {% load static %} {% block content %}
- {% load myapp_url %}
+{% extends 'app/main.html' %} {% load static %} {% load myapp_url %} {% block content %}
 <div class="container-fluid">
   <div class="d-flex flex-nowrap justify-content-between">
     <div class="w-60%">
@@ -8,7 +7,35 @@
         class="d-flex justify-content-start flex-wrap"
         style="width: 100%; margin-top: 20px"
       >
-        {% for college in colleges %}
+        {% if search %} {% for c in college %}
+        <div
+          class="card"
+          style="
+            margin-right: 20px;
+            margin-bottom: 20px;
+            width: 250px;
+            box-shadow: 0px 0px 10px 0px rgb(204, 204, 204);
+            cursor: pointer;
+            height: 250px;
+          "
+        >
+          <img
+            class="card-img-top"
+            src="{{c.collegeImg.url}}"
+            alt="Card image cap"
+            style="width: 100%; height: 50%"
+          />
+          <div style="margin-left: 10px; margin-top: 20px">
+            <a
+              style="font-weight: bold; font-size: 18px; color: black"
+              class="card-title"
+              >{{c.collegeName}}</a
+            >
+            <h6 class="card-subtitle mb-2 text-muted mt-2">{{c.university}}</h6>
+            <p class="card-text">{{c.collegeAddress}}</p>
+          </div>
+        </div>
+        {% endfor %} {% endif %} {% for college in colleges %}
         <div
           class="card"
           style="
@@ -28,6 +55,7 @@
           />
           <div style="margin-left: 10px; margin-top: 20px">
             <a
+              onClick=""
               href="{% url 'collegeDetail' %}"
               style="font-weight: bold; font-size: 18px; color: black"
               class="card-title"
@@ -60,17 +88,17 @@
       </div>
       <div>
         <h6>Affillation</h6>
-        {% for i in uni %}
+        <!-- {% for i in uni %}
         <div class="flex-row">
           <input type="radio" aria-label="Masters" />
           <label>{{i.uniName}}</label>
         </div>
-        {%endfor%}
-        <!-- <form method="get">
-          {{uniFilter.form.as_p}}<button class="btn btn-primary" type="submit">
+        {%endfor%} -->
+        <form method="get">
+          {{myFilter.form}}<button class="btn btn-primary" type="submit">
             Search
           </button>
-        </form> -->
+        </form>
       </div>
     </div>
   </div>
@@ -90,11 +118,16 @@
 
       {% if colleges.has_next %}
       <a
-        href="?page={% my_url colleges.next_page_number 'page' request.GET.urlencoded %}"
+        href="{% my_url colleges.next_page_number 'page' request.GET.urlencoded %}"
         >next &raquo;</a
       >
       {% endif %}
     </span>
   </div>
 </div>
+<script type="text/javascript">
+  function check(i) {
+    console.log(i);
+  }
+</script>
 {% endblock %}

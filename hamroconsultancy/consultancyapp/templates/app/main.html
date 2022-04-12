@@ -17,14 +17,24 @@
   <div class="d-flex justify-content-between">
     <form
       class="form-inline my-2 my-lg-0"
-      style="padding-left: 350px"
-      method="get"
+      style="padding-left: 450px"
+      method="post"
     >
-      {{myFilter.form}}
-      <button class="btn btn-none" type="submit">
-        <i class="fa fa-search"></i>
-      </button>
+      {% csrf_token %}
+      <div class="active-cyan-3">
+        <input
+          class="form-control"
+          type="search"
+          placeholder="Search"
+          arria-label="Search"
+          name="search"
+        />
+        <button class="btn btn-none btn-lg" type="submit">
+          <i class="fa fa-search"></i>
+        </button>
+      </div>
     </form>
+
     <p
       style="
         font-size: 12px;

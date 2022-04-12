@@ -1,4 +1,4 @@
-{% extends 'app/main.html' %} {% load static %} {% block content %}
+{% extends 'app/main.html' %} {% load myapp_url %} {% load static %} {% block content %}
 <div class="container-fluid">
   <div class="d-flex flex-nowrap justify-content-between">
     <div class="w-60%">
@@ -7,7 +7,30 @@
         class="d-flex justify-content-start flex-wrap"
         style="width: 100%; margin-top: 20px"
       >
-        {% for course in courses %}
+        {% if search %} {% for c in course %}
+        <div
+          class="card"
+          style="
+            margin-right: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0px 0px 10px 0px rgb(204, 204, 204);
+            cursor: pointer;
+            width: 255px;
+            height: 150px;
+          "
+        >
+          <div style="margin-left: 20px; margin-top: 20px">
+            <a
+              href="{% url 'courseDetail' %}"
+              style="font-size: 18px; font-weight: bold; color: black"
+              class="card-title"
+              >{{c.courseTitle}}</a
+            >
+            <h6 class="card-subtitle mb-2 text-muted mt-2">{{c.university}}</h6>
+            <p class="card-text">{{c.duration}}</p>
+          </div>
+        </div>
+        {% endfor %} {% endif %} {% for course in courses %}
         <div
           class="card"
           style="
@@ -47,19 +70,27 @@
         <input type="radio" aria-label="Masters" />PreDiploma
       </div>
       <h6>Affillation</h6>
-      {% for i in uni %}
+      <form method="get">
+        {{myFilter.form}}<button class="btn btn-primary" type="submit">
+          Search
+        </button>
+      </form>
+      <!-- {% for i in uni %}
       <div class="flex-row">
         <input type="radio" aria-label="{{i.uniName}}" />
         <label>{{i.uniName}}</label>
       </div>
-      {% endfor %}
+      {% endfor %} -->
     </div>
   </div>
   <div class="pagination">
     <span class="step-links">
       {% if courses.has_previous %}
       <!-- <a href="?page=1">&laquo; first</a> -->
-      <a href="?page={{ courses.previous_page_number }}">&laquo; previous</a>
+      <a
+        href="{% my_url courses.next_page_number 'page' request.GET.urlencoded %}"
+        >&laquo; previous</a
+      >
       {% endif %}
 
       <span class="current">
@@ -67,7 +98,10 @@
       </span>
 
       {% if courses.has_next %}
-      <a href="?page={{ courses.next_page_number }}">next &raquo;</a>
+      <a
+        href="{% my_url courses.next_page_number 'page' request.GET.urlencoded %}"
+        >next &raquo;</a
+      >
       {% endif %}
     </span>
   </div>
