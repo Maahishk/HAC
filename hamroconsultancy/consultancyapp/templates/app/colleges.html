@@ -27,6 +27,7 @@
           />
           <div style="margin-left: 10px; margin-top: 20px">
             <a
+              href="{% url 'collegeDetail' c.collegeId %}"
               style="font-weight: bold; font-size: 18px; color: black"
               class="card-title"
               >{{c.collegeName}}</a
@@ -55,8 +56,7 @@
           />
           <div style="margin-left: 10px; margin-top: 20px">
             <a
-              onClick=""
-              href="{% url 'collegeDetail' %}"
+              href="{% url 'collegeDetail' college.collegeId %}"
               style="font-weight: bold; font-size: 18px; color: black"
               class="card-title"
               >{{college.collegeName}}</a
@@ -125,9 +125,5 @@
     </span>
   </div>
 </div>
-<script type="text/javascript">
-  function check(i) {
-    console.log(i);
-  }
-</script>
+
 {% endblock %}

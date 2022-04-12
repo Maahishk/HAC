@@ -89,8 +89,8 @@ def about(request):
 def news(request):
     return render(request, 'app/news.html')
     
-def courseDetail(request):
-    courses=CourseDetails.objects.all()
+def courseDetail(request, pk):
+    courses=CourseDetails.objects.get(couId=pk)
     context={'courses':courses}
     return render(request, 'app/courseDetail.html', context)
 
