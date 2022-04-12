@@ -3,13 +3,14 @@
   <div class="d-flex justify-content-between">
     <div class="w-40 border-bottom mt-4">
       <h6 class="font-italic">College Details</h6>
-      <p>kkhghgfd</p>
-      <p>jdfhdshfj</p>
+      <p>{{colleges.collegeName}}</p>
+      <p>{{colleges.university}}</p>
+      <p>{{colleges.collegeAddress}}</p>
+      <p>{{colleges.collegecontact}}</p>
+      <p>Rating: {{c.collegerating}}</p>
     </div>
     <div class="w-60">
-      <img
-        src="../../../statics/images/colleges/Banner_1300x300_at_72ppi-thumbnail-1200x240-70.jpg"
-      />
+      <img src="{{colleges.collegeImg.url}}" />
     </div>
   </div>
   <div class="d-flex flex-row mt-4 justify-content-between">
@@ -31,13 +32,10 @@
       </button>
     </div>
     <div class="w-50">
-      <p>text</p>
+      <p>{{colleges.collegeDescription}}</p>
     </div>
     <div>
-      <img
-        class="border mb-4"
-        src="../../../statics/images/colleges/download_ady7KGN.jfif"
-      />
+      <img class="border mb-4" src="{{colleges.collegeLogo.url}}" />
       <div class="border p-4" style="background-color: #acecca">
         <span
           ><svg class="bi" width="32" height="32">

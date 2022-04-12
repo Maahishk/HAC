@@ -25,11 +25,6 @@ def search(request):
         return render(request, 'app/courses.html', {'search': search, 'course':course})
 
 
-def collegeSearch(request):
-    search = request.GET.get("search")
-    college = CollegeDetails.objects.filter(collegeName__contains=search)
-    return render(request, 'app/collegeDetail.html', {'search': search, 'college':college})
-
 # Create your views here.
 def dashboard(request):
     fields = StudyField.objects.all()
@@ -99,8 +94,8 @@ def courseDetail(request):
     context={'courses':courses}
     return render(request, 'app/courseDetail.html', context)
 
-def collegeDetail(request):
-    colleges=CollegeDetails.objects.all()
+def collegeDetail(request, pk):
+    colleges=CollegeDetails.objects.get(collegeId=pk)
     
     context = {'colleges':colleges}
     return render(request, 'app/collegeDetail.html', context)
