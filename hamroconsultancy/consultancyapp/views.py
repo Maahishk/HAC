@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import StudyField, University, CollegeDetails, CourseDetails, QuestionModel, Admission
+from .models import StudyField, University, CollegeDetails, CourseDetails, QuestionModel, Admission, CollegeCourse
 from .forms import CreateUserForm
 from .filters import CollegeFilter, CourseFilter, UniFilter
 from django.core.paginator import Paginator
@@ -31,13 +31,14 @@ def dashboard(request):
     university = University.objects.all()
     colleges=CollegeDetails.objects.all()[:5]
     courses=CourseDetails.objects.all()
+    collegecourse=CollegeCourse.objects.all()
     paginator = Paginator(courses, 10) # Show 5 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     if request.method == "POST":
         return search(request)
         
-    context = {'fields':fields, 'university':university, 'colleges':colleges,'courses':courses}
+    context = {'fields':fields, 'university':university, 'colleges':colleges,'courses':courses, 'collegecourse':collegecourse}
     return render(request, 'app/home.html', context)
 
 def courses(request):
@@ -55,6 +56,11 @@ def courses(request):
         
     context={'courses':page_obj, 'uni':uni,'myFilter':myFilter}
     return render(request, 'app/courses.html', context)
+
+def studyfield(request, pk):
+    field=StudyField.objects.get(fieldName=pk)
+    context={'field':field}
+    return render(request, 'app/studyField.html', context)
 
 def colleges(request):
     colleges=CollegeDetails.objects.all()

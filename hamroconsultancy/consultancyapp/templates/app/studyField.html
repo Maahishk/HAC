@@ -1,0 +1,23 @@
+{% extends 'app/main.html' %} {% block content %}
+<div class="container-fluid">
+  <div class="d-flex flex-column">
+    <img
+      style="height: 150px"
+      src="../../../statics/images/colleges/Banner_1300x300_at_72ppi-thumbnail-1200x240-70.jpg"
+    />
+    <div class="d-flex flex-row justify-content-between mt-4">
+      <div class="w-40 flex-column bg-secondary">
+        <h6>Offered by</h6>
+        <div class="flex-row">
+          <img />
+          <p>fjghfg</p>
+        </div>
+      </div>
+      <div class="w-60 flex-column">
+        <h5>{{field.fieldName}}</h5>
+        <p>{{field.fieldDescrib}}</p>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

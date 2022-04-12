@@ -3,6 +3,7 @@ from django.db import models
 # Create your models here.
 class  StudyField(models.Model):
     fieldName=models.CharField(max_length=100, null=True)
+    fieldDescrib=models.CharField(max_length=20000000, null=True)
     simg=models.ImageField(
         upload_to="field_image",
         null=True, 
@@ -33,11 +34,19 @@ class CollegeDetails(models.Model):
     def __str__(self):
         return self.collegeName
 
+class CourseType(models.Model):
+    typename=models.CharField(primary_key=True, max_length=50)
+
+    def __str__(self):
+        return self.typename
+
 class CourseDetails(models.Model):
     couId = models.IntegerField(primary_key=True)
+    field = models.ForeignKey(StudyField, null=True, blank=True,on_delete= models.SET_NULL)
     courseTitle = models.CharField(max_length=200)
     courseDescription = models.TextField(max_length=200, null=True, blank=True)
     duration = models.CharField(max_length=50, null=True)
+    courseType = models.ForeignKey(CourseType, null=True, on_delete=models.SET_NULL)
     university = models.ForeignKey(University, null=True, on_delete=models.SET_NULL, blank=True)
     def __str__(self):
         return self.courseTitle
@@ -46,8 +55,8 @@ class CollegeCourse(models.Model):
     collegeId = models.ForeignKey(CollegeDetails(), null=True, blank=True, on_delete= models.SET_NULL)
     couId = models.ForeignKey(CourseDetails(), null=True, blank=True, on_delete= models.SET_NULL)
 
-    def __str__(self):
-        return self.couId+""+collegeId
+    def __int__(self):
+        return self.parseString(collegeId)
 
 class Admission(models.Model):
     admisId = models.IntegerField(primary_key=True)

@@ -5,6 +5,7 @@
 
   <div class="d-flex flex-row">
     {% for college in colleges %}
+
     <div class="card" style="width: 500px; margin-right: 30px">
       <div
         class="d-flex"
@@ -28,14 +29,17 @@
         class="card-text"
         style="margin-left: 20px; overflow-y: hidden; cursor: pointer"
       >
-        <h6 class="card-subtitle mb-2 text-muted">List of courses</h6>
+        <h6 class="card-subtitle mb-2 mt-2 text-muted">List of courses</h6>
+        {% for c in collegecourse %}
+
         <ul>
-          <li>dvdjjsdkj</li>
-          <li>dvdjjsdkj</li>
+          <li>{{c.couId}}</li>
         </ul>
+
+        {% endfor %}
       </div>
     </div>
-    {%endfor%}
+    {% endfor %}
   </div>
 
   <!--Fields of study-->
@@ -67,7 +71,11 @@
         <img class="card-img-top" src="..." alt="Card image cap" />
         {% endif %}
         <div class="card-body">
-          <p class="card-title">{{field.fieldName}}</p>
+          <a
+            href="{% url 'studyfield' field.fieldName %}"
+            class="card-title text-secondary font-weight-bold text-capitalize text-lg outline-none underline-none"
+            >{{field.fieldName}}</a
+          >
         </div>
       </div>
       {% endfor %}

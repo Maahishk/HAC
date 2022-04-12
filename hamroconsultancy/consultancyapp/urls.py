@@ -15,4 +15,5 @@ urlpatterns = [
     path('about/', views.about, name="about"),
     path('news/', views.news, name="news"),
     path('logout/', views.logoutuser, name="logout"),
+    path('studyfield/<str:pk>/', views.studyfield, name="studyfield"),
 ]
