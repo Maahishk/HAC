@@ -15,5 +15,6 @@ urlpatterns = [
     path('about/', views.about, name="about"),
     path('news/', views.news, name="news"),
     path('logout/', views.logoutuser, name="logout"),
+    path('profile/', views.userProfile, name="profile"),
     path('studyfield/<str:pk>/', views.studyfield, name="studyfield"),
 ]

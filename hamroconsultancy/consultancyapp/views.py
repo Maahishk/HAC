@@ -186,3 +186,6 @@ def quiz(request):
             'questions':questions
         }
         return render(request,'app/quiz.html',context)
+
+def userProfile(request):
+    return render(request,'app/profile.html')
