@@ -74,3 +74,39 @@ class QuestionModel(models.Model):
     op4 = models.CharField(max_length=200,null=True)
     def __str__(self):
         return self.question
+
+class Scholarship(models.Model):
+    s_Id = models.IntegerField(primary_key=True)
+    s_Title= models.CharField(max_length=200)
+    s_openFrom = models.CharField(max_length=100)
+    s_until = models.CharField(max_length=100)
+    s_img = models.ImageField(upload_to="scholar", null=True)
+    status= models.CharField(max_length=100, null=True, blank=True)
+    topic= models.CharField(max_length=200, null=True)
+    requirement= models.TextField(max_length=10000, null=True, blank=True)
+    info = models.TextField(max_length=10000, null=True, blank=True)
+    def __str__(self):
+        return self.s_Title
+
+class Vacancies(models.Model):
+    v_Id = models.IntegerField(primary_key=True)
+    v_Title= models.CharField(max_length=200)
+    v_openFrom = models.CharField(max_length=100)
+    v_until = models.CharField(max_length=100)
+    v_img = models.ImageField(upload_to="scholar", null=True)
+    v_status= models.CharField(max_length=100, null=True, blank=True)
+    v_topic= models.CharField(max_length=200, null=True)
+    v_requirement= models.TextField(max_length=10000, null=True, blank=True)
+    v_info = models.TextField(max_length=10000, null=True, blank=True)
+    def __str__(self):
+        return self.v_Title
+
+class Career(models.Model):
+    c_Id = models.IntegerField(primary_key=True)
+    c_Title= models.CharField(max_length=100)
+    c_img = models.ImageField(upload_to="scholar", null=True)
+    c_topic= models.CharField(max_length=200, null=True)
+    c_requirement= models.TextField(max_length=10000, null=True, blank=True)
+    c_info = models.TextField(max_length=10000, null=True, blank=True)
+    def __str__(self):
+        return self.c_Title

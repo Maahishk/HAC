@@ -36,10 +36,12 @@
           Others
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Scholarships</a>
-          <a class="dropdown-item" href="#">Vacancies</a>
+          <a class="dropdown-item" href="{% url 'scholarships' %}"
+            >Scholarships</a
+          >
+          <a class="dropdown-item" href="{% url 'vacancies' %}">Vacancies</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Careers</a>
+          <a class="dropdown-item" href="{% url 'career' %}">Careers</a>
           <a class="dropdown-item" href="#">Rankings</a>
           <a class="dropdown-item" href="#">Events</a>
           <a class="dropdown-item" href="{% url 'university' %}"

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import StudyField, University, CollegeDetails, CourseDetails, QuestionModel, Admission, CollegeCourse
+from .models import StudyField, University, CollegeDetails, CourseDetails, QuestionModel, Admission, CollegeCourse, Scholarship, Vacancies, Career
 from .forms import CreateUserForm
 from .filters import CollegeFilter, CourseFilter, UniFilter
 from django.core.paginator import Paginator
@@ -189,3 +189,24 @@ def quiz(request):
 
 def userProfile(request):
     return render(request,'app/profile.html')
+
+def scholarship(request):
+    scholar=Scholarship.objects.all()
+    context = {
+            'scholar':scholar
+        }
+    return render(request,'app/scholarships.html', context)
+
+def career(request):
+    career=Career.objects.all()
+    context = {
+            'career':career
+        }
+    return render(request,'app/career.html', context)
+
+def vacancies(request):
+    vacancy=Vacancies.objects.all()
+    context = {
+            'vacancy':vacancy
+        }
+    return render(request,'app/vacancies.html',context)
