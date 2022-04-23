@@ -110,3 +110,12 @@ class Career(models.Model):
     c_info = models.TextField(max_length=10000, null=True, blank=True)
     def __str__(self):
         return self.c_Title
+
+
+class News(models.Model):
+    nid =models.IntegerField(primary_key=True)
+    newstitle=models.TextField(max_length=500, null=True, blank=True)
+    time = models.DateTimeField(auto_now_add=True)
+    desc=models.TextField(max_length=100000, blank=True)
+    def __str__(self):
+        return self.newstitle

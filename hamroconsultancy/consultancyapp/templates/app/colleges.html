@@ -1,4 +1,5 @@
-{% extends 'app/main.html' %} {% load static %} {% load myapp_url %} {% block content %}
+{% extends 'app/main.html' %} {% load static %} {% load myapp_url %} {% block
+content %}
 <div class="container-fluid">
   <div class="d-flex flex-nowrap justify-content-between">
     <div class="w-60%">
@@ -29,7 +30,7 @@
             <a
               href="{% url 'collegeDetail' c.collegeId %}"
               style="font-weight: bold; font-size: 18px; color: black"
-              class="card-title"
+              class="card-title text-truncate"
               >{{c.collegeName}}</a
             >
             <h6 class="card-subtitle mb-2 text-muted mt-2">{{c.university}}</h6>
@@ -58,7 +59,7 @@
             <a
               href="{% url 'collegeDetail' college.collegeId %}"
               style="font-weight: bold; font-size: 18px; color: black"
-              class="card-title"
+              class="card-title text-truncate"
               >{{college.collegeName}}</a
             >
             <h6 class="card-subtitle mb-2 text-muted mt-2">
@@ -76,17 +77,6 @@
     >
       <h5>Search</h5>
       <div class="border-bottom">
-        <h6>Course</h6>
-        <div class="flex-row">
-          <input type="radio" aria-label="Masters" />
-          <label>Masters</label>
-          <input type="radio" aria-label="Bachelors" />
-          <label>Bachelors</label>
-          <input type="radio" aria-label="PreDiploma" />
-          <label>PreDiploma</label>
-        </div>
-      </div>
-      <div>
         <h6>Affillation</h6>
         <!-- {% for i in uni %}
         <div class="flex-row">
@@ -94,8 +84,8 @@
           <label>{{i.uniName}}</label>
         </div>
         {%endfor%} -->
-        <form method="get">
-          {{myFilter.form}}<button class="btn btn-primary" type="submit">
+        <form class="form-group" method="get">
+          {{myFilter.form}}<button class="btn btn-primary mt-2" type="submit">
             Search
           </button>
         </form>
