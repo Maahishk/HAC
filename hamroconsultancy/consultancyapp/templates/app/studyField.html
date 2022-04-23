@@ -6,14 +6,24 @@
       src="../../../statics/images/colleges/Banner_1300x300_at_72ppi-thumbnail-1200x240-70.jpg"
     />
     <div class="d-flex flex-row justify-content-between mt-4">
-      <div class="w-40 flex-column bg-secondary">
+      <div class="w-40 flex-column p-4" style="background-color: #acecca">
         <h6>Offered by</h6>
-        <div class="flex-row">
-          <img />
-          <p>fjghfg</p>
+        {% for c in colleges %}
+        <div class="d-flex">
+          <img
+            style="
+              width: 50px;
+              height: 50px;
+              margin-left: 10px;
+              margin-bottom: 10px;
+            "
+            src="{{c.collegeLogo.url}}"
+          />
+          <p style="margin-left: 10px; margin-top: 10px">{{c.collegeName}}</p>
         </div>
+        {% endfor %}
       </div>
-      <div class="w-60 flex-column">
+      <div class="w-60 flex-column text-start">
         <h5>{{field.fieldName}}</h5>
         <p>{{field.fieldDescrib}}</p>
       </div>
