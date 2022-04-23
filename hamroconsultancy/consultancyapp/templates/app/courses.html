@@ -1,7 +1,7 @@
 {% extends 'app/main.html' %} {% load myapp_url %} {% load static %} {% block content %}
 <div class="container-fluid">
   <div class="d-flex flex-nowrap justify-content-between">
-    <div class="w-60%">
+    <div class="w-60">
       <h5>Courses in Nepal</h5>
       <div
         class="d-flex justify-content-start flex-wrap"
@@ -58,18 +58,9 @@
         {% endfor %}
       </div>
     </div>
-    <div
-      class="d-flex flex-column w-40% border-left"
-      style="padding-left: 20px"
-    >
+    <div class="d-flex flex-column w-40 border-left" style="padding-left: 20px">
       <h5>Search</h5>
-      <h6>Level</h6>
-      <div>
-        <input type="radio" aria-label="Masters" />Masters
-        <input type="radio" aria-label="Masters" />Bachelors
-        <input type="radio" aria-label="Masters" />PreDiploma
-      </div>
-      <h6>Affillation</h6>
+
       <form method="get">
         {{myFilter.form}}<button class="btn btn-primary mt-4" type="submit">
           Search
