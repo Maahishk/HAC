@@ -20,4 +20,5 @@ urlpatterns = [
     path('career/', views.career, name="career"),
     path('vacancies/', views.vacancies, name="vacancies"),
     path('studyfield/<str:pk>/', views.studyfield, name="studyfield"),
+    path('chatbot/',views.chatbot, name="chatbot"),
 ]

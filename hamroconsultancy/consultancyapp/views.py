@@ -6,6 +6,7 @@ from django.core.paginator import Paginator
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+#from .chatbot import Chatbot
 
 def search(request):
 
@@ -24,6 +25,8 @@ def search(request):
         page_obj = paginator.get_page(page_number)
         return render(request, 'app/courses.html', {'search': search, 'course':course})
 
+def chatbot(request):
+    return render(request, 'app/chatbot.html')
 
 # Create your views here.
 def dashboard(request):
@@ -59,7 +62,8 @@ def courses(request):
 
 def studyfield(request, pk):
     field=StudyField.objects.get(fieldName=pk)
-    context={'field':field}
+    colleges=CollegeDetails.objects.all()[:5]
+    context={'field':field, 'colleges':colleges}
     return render(request, 'app/studyField.html', context)
 
 def colleges(request):
