@@ -51,7 +51,7 @@
       </li>
     </ul>
     {% if user.is_authenticated %} Hello,
-    <a href="{% url 'logout' %}" style="padding-right: 10px">
+    <a href="{% url 'profile' %}" style="padding-right: 10px">
       {{request.user}}
     </a>
     <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
