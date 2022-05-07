@@ -152,7 +152,7 @@ def quiz(request):
     if request.method == 'POST':
         print(request.POST)
         questions=QuestionModel.objects.all()
-        ans=""
+        ans=" BBA/BBM/BBS/BIT"
         wrong=0
         correct=0
         total=0
