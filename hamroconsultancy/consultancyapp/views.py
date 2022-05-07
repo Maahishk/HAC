@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 #from .chatbot import Chatbot
 
-def search(request):
+def search(request, value):
 
     search = request.POST.get("search")
     college = CollegeDetails.objects.filter(collegeName__contains=search)
@@ -19,11 +19,15 @@ def search(request):
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         return render(request, 'app/colleges.html', {'search': search, 'college':page_obj})
+    else:
+        return render(request, 'app/colleges.html', value)
     if(course):
         paginator = Paginator(course, 10) # Show 5 contacts per page.
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
         return render(request, 'app/courses.html', {'search': search, 'course':course})
+    else:
+        return render(request, 'app/courses.html', value)
 
 def chatbot(request):
     return render(request, 'app/chatbot.html')
@@ -38,8 +42,9 @@ def dashboard(request):
     paginator = Paginator(courses, 10) # Show 5 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
+    c= {'course':courses, 'colleges':colleges}
     if request.method == "POST":
-        return search(request)
+        return search(request, c)
         
     context = {'fields':fields, 'university':university, 'colleges':colleges,'courses':courses, 'collegecourse':collegecourse}
     return render(request, 'app/home.html', context)
@@ -55,7 +60,7 @@ def courses(request):
 
     
     if request.method == "POST":
-        return search(request)
+        return search(request, courses)
         
     context={'courses':page_obj, 'uni':uni,'myFilter':myFilter}
     return render(request, 'app/courses.html', context)
@@ -74,7 +79,7 @@ def colleges(request):
     colleges=myFilter.qs
     # colleges=uniFilter.qs
     if request.method == "POST":
-        return search(request)
+        return search(request, courses)
 
     paginator = Paginator(colleges, 10) # Show 5 contacts per page.
     page_number = request.GET.get('page')

@@ -25,13 +25,20 @@
             alt="Card image cap"
             style="width: 100%; height: 50%"
           />
-          <div style="margin-left: 10px; margin-top: 20px">
-            <a
+          <div style="padding: 10px">
+            <p
               href="{% url 'collegeDetail' c.collegeId %}"
               style="font-weight: bold; font-size: 18px; color: black"
-              class="card-title text-truncate"
-              >{{c.collegeName}}</a
+              class="card-title"
+              style="
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+              "
             >
+              {{c.collegeName}}
+            </p>
             <h6 class="card-subtitle mb-2 text-muted mt-2">{{c.university}}</h6>
             <p class="card-text">{{c.collegeAddress}}</p>
           </div>

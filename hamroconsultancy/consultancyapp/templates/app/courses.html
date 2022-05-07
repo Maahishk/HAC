@@ -1,5 +1,4 @@
-{% extends 'app/main.html' %} {% load myapp_url %} {% load static %}
- {% block content %}
+{% extends 'app/main.html' %} {% load myapp_url %} {% load static %} {% block content %}
 <div class="container-fluid">
   <div class="d-flex flex-nowrap justify-content-between">
     <div class="w-60">
@@ -24,7 +23,13 @@
             <a
               href="{% url 'courseDetail' c.couId %}"
               style="font-size: 18px; font-weight: bold; color: black"
-              class="card-title text-truncate"
+              class="card-title"
+              style="
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+              "
               >{{c.courseTitle}}</a
             >
             <h6 class="card-subtitle mb-2 text-muted mt-2">{{c.university}}</h6>
