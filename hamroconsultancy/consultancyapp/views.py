@@ -34,7 +34,7 @@ def dashboard(request):
     university = University.objects.all()
     colleges=CollegeDetails.objects.all()[:5]
     courses=CourseDetails.objects.all()
-    collegecourse=CollegeCourse.objects.all()
+    collegecourse=CollegeCourse.objects.all()[:5]
     paginator = Paginator(courses, 10) # Show 5 contacts per page.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
