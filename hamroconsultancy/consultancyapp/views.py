@@ -103,7 +103,8 @@ def about(request):
     
 def courseDetail(request, pk):
     courses=CourseDetails.objects.get(couId=pk)
-    context={'courses':courses}
+    colleges=CollegeDetails.objects.all()[:6]
+    context={'courses':courses, 'colleges':colleges}
     return render(request, 'app/courseDetail.html', context)
 
 def collegeDetail(request, pk):
