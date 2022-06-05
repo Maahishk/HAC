@@ -63,6 +63,7 @@ class Admission(models.Model):
     admissionTitle= models.CharField(max_length=1000)
     admissionFrom = models.CharField(max_length=200)
     admissionTill = models.CharField(max_length=200)
+    addesc = models.TextField(max_length=200, null=True)
     def __str__(self):
         return self.admissionFrom
 

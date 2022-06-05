@@ -217,6 +217,13 @@ def news(request):
     context = {'n_news':n_news}
     return render(request,'app/news.html', context)
 
+@login_required(login_url='login')
+def newsDetail(request, pk):
+    news=News.objects.get(nid=pk)
+    
+    context={'news':news}
+    return render(request, 'app/newsDetail.html', context)
+
 def vacancies(request):
     vacancy=Vacancies.objects.all()
     context = {

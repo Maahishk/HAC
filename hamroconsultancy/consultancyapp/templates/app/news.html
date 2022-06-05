@@ -23,7 +23,12 @@
           overflow: hidden;
         "
       >
-        {{i.newstitle}}
+        <a
+          href="{% url 'newsDetail' i.nid %}"
+          style="font-weight: bold; font-size: 18px; color: black"
+        >
+          {{i.newstitle}}</a
+        >
       </h5>
 
       <div class="width-100%">

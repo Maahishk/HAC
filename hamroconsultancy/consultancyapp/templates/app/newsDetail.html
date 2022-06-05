@@ -1,0 +1,11 @@
+{% extends 'app/main.html' %} {% load static %} {% block content %}
+<div class="container-fluid">
+  <div
+    class="d-flex flex-column items-centered justify-content-between mt-4 m-4"
+  >
+    <h4>{{news.newstitle}}</h4>
+    <p>{{news.time}}</p>
+    <h6 style="text-align: justify; line-height: 2">{{news.desc}}</h6>
+  </div>
+</div>
+{% endblock %}
